@@ -9,7 +9,6 @@ package frc.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import harkerrobolib.subsystems.HSDrivetrain;
 import harkerrobolib.wrappers.HSTalon;
@@ -21,18 +20,16 @@ public class Drivetrain extends HSDrivetrain {
 
 	public static Drivetrain instance;
 
-	private static final boolean L_TALON_INVERT = ;
-	private static final boolean R_TALON_INVERT = ;
-	private static final boolean L_VICTOR_INVERT = ;
-	private static final boolean R_VICTOR_INVERT = ;
+	private static final boolean L_TALON_INVERT = true;
+	private static final boolean R_TALON_INVERT = false;
+	private static final boolean L_VICTOR_INVERT = true;
+	private static final boolean R_VICTOR_INVERT = false;
 
 	private Drivetrain() {
 		super(new HSTalon(RobotMap.LEFT_TALON_ID), new HSTalon(RobotMap.RIGHT_TALON_ID),
 			new VictorSPX(RobotMap.LEFT_VICTOR_ID), new VictorSPX(RobotMap.RIGHT_VICTOR_ID));
 
 		setupMotors();
-
-
 	}
 
 	private void setupMotors() {

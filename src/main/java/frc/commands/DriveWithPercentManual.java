@@ -7,10 +7,10 @@
 
 package frc.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import harkerrobolib.commands.IndefiniteCommand;
 
-public class ExampleCommands extends Command {
-  public ExampleCommands() {
+public class DriveWithPercentManual extends IndefiniteCommand {
+  public DriveWithPercentManual() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -41,4 +41,6 @@ public class ExampleCommands extends Command {
   @Override
   protected void interrupted() {
   }
+
+
 }

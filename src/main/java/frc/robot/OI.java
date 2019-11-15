@@ -31,7 +31,7 @@ public class OI
         return driverGamepad;
     }
 
-    private static OI getInstance()
+    public static OI getInstance()
     {
         if (instance == null)
             instance=new OI();

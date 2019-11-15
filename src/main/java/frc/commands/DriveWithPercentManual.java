@@ -7,35 +7,41 @@
 
 package frc.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import frc.robot.OI;
+import frc.subsystems.Drivetrain;
 import harkerrobolib.commands.IndefiniteCommand;
 
 public class DriveWithPercentManual extends IndefiniteCommand {
-  public DriveWithPercentManual() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-  }
 
-  // Called just before this Command runs the first time
-  @Override
-  protected void initialize() {
-  }
+	private static final double SPEED_MULTIPLIER = 0.3;
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() {
-  }
+	public DriveWithPercentManual() {
+		requires(Drivetrain.getInstance());
+	}
 
+	// Called repeatedly when this Command is scheduled to run
+	@Override
+	protected void execute() {
+		double speed = OI.getInstance().getDriver().getLeftY();
+		double turn = OI.getInstance().getDriver().getLeftX();
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-  }
+		Drivetrain.getInstance().getLeftMaster().set(ControlMode.PercentOutput, SPEED_MULTIPLIER*(speed + turn));
+		Drivetrain.getInstance().getRightMaster().set(ControlMode.PercentOutput, SPEED_MULTIPLIER*(speed - turn));
+	}
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-  }
+	// Called once after isFinished returns true
+	@Override
+	protected void end() {
+		Drivetrain.getInstance().getLeftMaster().set(ControlMode.Disabled, 0);
+		Drivetrain.getInstance().getRightMaster().set(ControlMode.Disabled, 0);
+	}
 
-
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted() {
+		end();
+	}
 }

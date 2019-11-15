@@ -9,6 +9,7 @@ package frc.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import frc.commands.DriveWithPercentManual;
 import frc.robot.RobotMap;
 import harkerrobolib.subsystems.HSDrivetrain;
 import harkerrobolib.wrappers.HSTalon;
@@ -37,10 +38,14 @@ public class Drivetrain extends HSDrivetrain {
 		getRightMaster().setInverted(R_TALON_INVERT);
 		getLeftFollower().setInverted(L_VICTOR_INVERT);
 		getRightFollower().setInverted(R_VICTOR_INVERT);
+
+		getLeftFollower().follow(getLeftMaster());
+		getRightFollower().follow(getRightMaster());
 	}
 
 	@Override
 	public void initDefaultCommand() {
+		setDefaultCommand(new DriveWithPercentManual());
 	}
 
 	public static Drivetrain getInstance() {

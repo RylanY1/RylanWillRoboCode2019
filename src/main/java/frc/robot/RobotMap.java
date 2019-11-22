@@ -10,4 +10,8 @@ public class RobotMap
     public static final int LEFT_VICTOR_ID = 2;
     public static final int RIGHT_VICTOR_ID = 1;
 
+    public static final int MASTER_TALON_ID = ;
+    public static final int FOLLOWER_TALON_ID = ; 
+    public static final int LEFT_FOLLOWER_ID = ;
+    public static final int RIGHT_FOLLOWER_ID = ;
 }
